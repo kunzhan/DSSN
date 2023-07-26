@@ -1,0 +1,25 @@
+# arguments for dataset
+dataset: pascal
+nclass: 21
+crop_size: 513
+data_root: /data/sseg/Pascal/
+
+# arguments for training
+epochs: 100
+batch_size: 2 # per GPU x 4 GPUs
+lr: 0.002
+lr_multi: 10.0
+criterion:
+  name: CELoss
+  kwargs:
+    ignore_index: 255
+conf_thresh: 0.95
+
+# arguments for model
+model: deeplabv3plus
+backbone: resnet101
+replace_stride_with_dilation: [False, False, True]
+dilations: [6, 12, 18]
+beta: 0.996
+num_aug: 3
+flag_use_random_num_sampling: True
